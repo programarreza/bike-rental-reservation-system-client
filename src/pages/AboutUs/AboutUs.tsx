@@ -1,6 +1,6 @@
 const AboutUs = () => {
   return (
-    <div>
+    <div className="min-h-screen">
       <h2>AboutUs Component Coming Soon</h2>
     </div>
   );

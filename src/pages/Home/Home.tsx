@@ -2,7 +2,7 @@ import Container from "../../components/ui/Container/Container";
 
 const Home = () => {
   return (
-    <div>
+    <div className="min-h-screen">
       <Container>
         <h2>Home Component Coming Soon</h2>
       </Container>

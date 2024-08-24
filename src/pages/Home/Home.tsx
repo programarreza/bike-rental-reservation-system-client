@@ -1,11 +1,9 @@
-import Container from "../../components/ui/Container/Container";
+import Banner from "../../components/ui/Banner/Banner";
 
 const Home = () => {
   return (
     <div className="min-h-screen">
-      <Container>
-        <h2>Home Component Coming Soon</h2>
-      </Container>
+      <Banner />
     </div>
   );
 };

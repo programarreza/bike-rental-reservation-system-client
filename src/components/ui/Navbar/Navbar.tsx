@@ -1,16 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavbarLink from "./NavbarLink";
 import Theme from "./Theme";
 import DropDown from "./DropDown";
-import logo from "../../../assets/logo.png"
+import logo from "../../../assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState("up");
+
+  useEffect(() => {
+    let lastScrollY = window.pageYOffset;
+
+    const updateScrollDirection = () => {
+      const scrollY = window.pageYOffset;
+      const direction = scrollY > lastScrollY ? "down" : "up";
+      if (
+        direction !== scrollDirection &&
+        Math.abs(scrollY - lastScrollY) > 10
+      ) {
+        setScrollDirection(direction);
+      }
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+    };
+
+    window.addEventListener("scroll", updateScrollDirection);
+    return () => {
+      window.removeEventListener("scroll", updateScrollDirection);
+    };
+  }, [scrollDirection]);
 
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-lg">
+    <div
+      className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ease-in-out ${
+        scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"
+      }`}
+      style={{ backdropFilter: "blur(10px)" }}
+    >
+      <div className="navbar ">
         <div className="navbar-start">
           <div className="dropdown">
             <label
@@ -47,11 +74,7 @@ const Navbar = () => {
             )}
           </div>
           <Link to="/" className=" text-xl">
-            <img
-              className="w-20"
-              src={logo}
-              alt=""
-            />
+            <img className="w-20" src={logo} alt="" />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">

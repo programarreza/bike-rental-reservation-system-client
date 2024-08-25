@@ -19,7 +19,6 @@ const bikesApi = baseApi.injectEndpoints({
         };
       },
       transformResponse: (response) => {
-		console.log({response})
         return {
           data: response.data,
           meta: response.meta,

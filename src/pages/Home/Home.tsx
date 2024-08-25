@@ -1,4 +1,5 @@
 import Banner from "../../components/ui/Banner/Banner";
+import ContactUs from "../../components/ui/ContactUs/ContactUs";
 import Featured from "../../components/ui/Featured/Featured";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <div className="min-h-screen">
       <Banner />
       <Featured />
+      <ContactUs/>
     </div>
   );
 };

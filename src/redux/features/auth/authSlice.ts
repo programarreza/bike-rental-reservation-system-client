@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 
 export type TUser = {
-  userId: string;
+  name: string;
+  email: string;
+  image: string;
   role: string;
   iat: number;
   exp: number;
@@ -24,7 +26,6 @@ const authSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       const { user, token } = action.payload;
-      console.log({ user, token });
       state.user = user;
       state.token = token;
     },

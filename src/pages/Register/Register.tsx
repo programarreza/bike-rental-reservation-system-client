@@ -2,14 +2,15 @@ import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ImSpinner6 } from "react-icons/im";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import { useSignUpMutation } from "../../redux/features/auth/authApi";
 import { imageUpload } from "../../utils/utils";
-import { toast } from "sonner";
 
 const Register = () => {
   const [isShow, setIsShow] = useState(true);
   const [signUp, { isLoading }] = useSignUpMutation();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -19,7 +20,7 @@ const Register = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      const image = data.image[0];
+      const image = data?.image[0];
 
       const imageData = await imageUpload(image);
 
@@ -33,16 +34,18 @@ const Register = () => {
       };
 
       const res = await signUp(userInfo);
+      console.log(res);
 
       if (res?.data?.success) {
         toast.success(res?.data?.message);
+        navigate("/login");
       }
 
       if (res?.error?.status == 409) {
         toast.error(error?.data?.message);
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error?.response?.data?.error?.message);
     }
   };
 
@@ -143,9 +146,9 @@ const Register = () => {
                     className="text-xl absolute cursor-pointer mt-7 ml-[290px]"
                   >
                     {isShow ? (
-                      <FaEyeSlash size={25} className="text-black" />
+                      <FaEyeSlash size={25} />
                     ) : (
-                      <FaEye size={25} className="text-black" />
+                      <FaEye size={25} />
                     )}
                   </p>
                 </div>

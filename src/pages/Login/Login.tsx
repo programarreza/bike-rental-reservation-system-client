@@ -1,15 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ImSpinner6 } from "react-icons/im";
 import { Link } from "react-router-dom";
-import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { toast } from "sonner";
-
+import { useLoginMutation } from "../../redux/features/auth/authApi";
+import { setUser } from "../../redux/features/auth/authSlice";
+import { useAppDispatch } from "../../redux/hooks";
+import { verifyToken } from "../../utils/verifyToken";
 
 const Login = () => {
   const [isShow, setIsShow] = useState(true);
   const [login, { isLoading }] = useLoginMutation();
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -25,8 +29,18 @@ const Login = () => {
       };
 
       const res = await login(userData);
-      toast.success(res?.data?.message);
-    } catch (error) {
+
+      const user = verifyToken(res?.data?.token);
+
+      dispatch(setUser({ user: user, token: res?.data?.token }));
+
+      if (res?.data?.success) {
+        toast.success(res?.data?.message);
+      }
+    } catch (error: any) {
+      toast.error(error?.data?.message || "Something went wrong", {
+        duration: 1000,
+      });
       console.log("Error", error);
     }
   };
@@ -91,9 +105,9 @@ const Login = () => {
                       className="text-xl absolute cursor-pointer mt-7 ml-[290px]"
                     >
                       {isShow ? (
-                        <FaEyeSlash size={25} className="text-black" />
+                        <FaEyeSlash size={25} />
                       ) : (
-                        <FaEye size={25} className="text-black" />
+                        <FaEye size={25} />
                       )}
                     </p>
 

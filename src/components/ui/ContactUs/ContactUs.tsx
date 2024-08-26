@@ -3,10 +3,13 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { ImSpinner6 } from "react-icons/im";
 import { SiHomeadvisor } from "react-icons/si";
+import { useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { useCreateContactMessageMutation } from "../../../redux/features/contact/contactApi";
+import Map from "../Map/Map";
 
 const ContactUs = () => {
+  const location = useLocation();
   const [createContactMessage, { isLoading }] =
     useCreateContactMessageMutation();
 
@@ -40,13 +43,13 @@ const ContactUs = () => {
 
   return (
     <div className="min-h-screen shadow-2xl bg-transparent ">
-      <div className="relative  min-h-[40vh] ">
-        <h2 className="flex justify-center items-center pt-24 text-4xl font-semibold">
+      <div className="relative   ">
+        <h2 className="flex justify-center items-center py-24 text-4xl font-semibold">
           Let's Talk To Us
         </h2>
       </div>
       <div className=" min-h-screen ">
-        <div className=" -mt-14 absolute w-full">
+        <div className=" w-full">
           <div className="hero">
             <div className=" flex flex-col md:flex-row  rounded-xl justify-between">
               {/* form area */}
@@ -147,7 +150,7 @@ const ContactUs = () => {
           </div>
 
           {/* contact info */}
-          <div className=" flex justify-center items-center mt-14">
+          <div className=" flex justify-center items-center mt-24">
             <div className="flex  justify-center items-center gap-12">
               <div className="flex  items-center gap-3">
                 <div className="rounded-full bg-[#ff7527] size-10 flex justify-center items-center ">
@@ -171,22 +174,15 @@ const ContactUs = () => {
               </div>
             </div>
           </div>
-
-          <h2 className="text-5xl font-semibold flex items-center justify-center mt-20">
-            Find Us Here
-          </h2>
         </div>
       </div>
 
-      {/* map */}
-      <div>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7302.842524506133!2d90.36778332230463!3d23.76800882178184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c1fc30a25999%3A0xa09246455a007f98!2sPrime%20Minister&#39;s%20Residence%20(Ganabhaban)!5e0!3m2!1sen!2sbd!4v1724612033736!5m2!1sen!2sbd"
-          width="100%"
-          height="450"
-          loading="lazy"
-        ></iframe>
-      </div>
+      {/* map only visible on "/contact-us" */}
+      {location.pathname === "/contact-us" && (
+        <div>
+          <Map />
+        </div>
+      )}
     </div>
   );
 };

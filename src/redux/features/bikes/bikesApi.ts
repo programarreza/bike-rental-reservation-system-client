@@ -18,6 +18,7 @@ const bikesApi = baseApi.injectEndpoints({
           params: params,
         };
       },
+      providesTags: ["bike"],
       transformResponse: (response) => {
         return {
           data: response.data,
@@ -40,7 +41,22 @@ const bikesApi = baseApi.injectEndpoints({
         };
       },
     }),
+
+    addBike: builder.mutation({
+      query: (data) => {
+        return {
+          url: "/bikes",
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["bike"],
+    }),
   }),
 });
 
-export const { useGetAllBikesQuery, useGetSingleBikeQuery } = bikesApi;
+export const {
+  useGetAllBikesQuery,
+  useGetSingleBikeQuery,
+  useAddBikeMutation,
+} = bikesApi;

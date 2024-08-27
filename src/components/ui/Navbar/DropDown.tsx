@@ -1,26 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   logout,
   selectCurrentUser,
 } from "../../../redux/features/auth/authSlice";
+import { useGetMeQuery } from "../../../redux/features/user/userApi";
 
 const DropDown = () => {
   const [isShow, setIsShow] = useState(false);
+  const [shouldRefetch, setShouldRefetch] = useState(false);
   const dispatch = useAppDispatch();
 
-  const user = useAppSelector(selectCurrentUser);
+  const currentUser = useAppSelector(selectCurrentUser);
+  const { data: userData, refetch } = useGetMeQuery(currentUser?.email, {
+    skip: !currentUser?.email && !shouldRefetch,
+  });
 
-  const handleLogOur = () => {
+  const user = userData?.data;
+
+  const handleLogout = () => {
     dispatch(logout());
+    setShouldRefetch(true); 
   };
+
+  useEffect(() => {
+    if (shouldRefetch) {
+      refetch();
+      setShouldRefetch(false); 
+    }
+  }, [shouldRefetch, refetch]);
 
   return (
     <>
       <div className="dropdown dropdown-end">
         <label
           onClick={() => setIsShow(!isShow)}
-          className="btn btn-ghost btn-circle avatar "
+          className="btn btn-ghost btn-circle avatar"
         >
           <div className="w-10 rounded-full">
             {user ? (
@@ -35,24 +50,18 @@ const DropDown = () => {
         </label>
       </div>
       {isShow && user ? (
-        <ul
-          // tabIndex={0}
-          className="menu  absolute menu-sm dropdown-content  mt-36 z-[10] p-2 shadow bg-base-100 rounded-box w-52"
-        >
+        <ul className="menu absolute menu-sm dropdown-content mt-36 z-[10] p-2 shadow bg-base-100 rounded-box w-52">
           <li>
             <a className="justify-between">{user?.name}</a>
           </li>
           <li>
             <a className="justify-between">{user?.email}</a>
           </li>
-
           <li>
-            <button onClick={handleLogOur}>logout</button>
+            <button onClick={handleLogout}>Logout</button>
           </li>
         </ul>
-      ) : (
-        ""
-      )}
+      ) : null}
     </>
   );
 };

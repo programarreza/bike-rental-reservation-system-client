@@ -5,6 +5,10 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import ContactUs from "../components/ui/ContactUs/ContactUs";
+import UserDashboard from "../components/layout/UserDashboard";
+import Profile from "../pages/userDashboard/Profile";
+import BikeListing from "../pages/userDashboard/BikeListing";
+import MyRentals from "../pages/userDashboard/MyRentals";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +34,25 @@ const router = createBrowserRouter([
       {
         path: "contact-us",
         element: <ContactUs />,
+      },
+    ],
+  },
+
+  {
+    path: "/user-dashboard",
+    element: <UserDashboard />,
+    children: [
+      {
+        path: "/user-dashboard/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/user-dashboard/bike-listing",
+        element: <BikeListing />,
+      },
+      {
+        path: "/user-dashboard/my-rentals",
+        element: <MyRentals />,
       },
     ],
   },

@@ -73,7 +73,7 @@ const UserSidebar = () => {
       </div>
 
       {/* show to XL */}
-      <div className="h-screen hidden xl:block bg-[#081B29] text-white p-8 fixed">
+      <div className="h-screen hidden xl:block bg-[#081B29] text-white p-6 fixed">
         <div className="flex items-center gap-3 mb-12 shadow-xl">
           <img className="w-16" src={logo} alt="" />
           <h2 className="text-3xl font-bold">Bike rental</h2>

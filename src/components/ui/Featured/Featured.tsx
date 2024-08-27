@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useGetAllBikesQuery } from "../../../redux/features/bikes/bikesApi";
 import { TBike } from "../../../types";
 import Container from "../Container/Container";
@@ -19,9 +20,11 @@ const Featured = () => {
                 <p>model: {bike.model}</p>
                 <p>brand: {bike.brand}</p>
                 <div className="card-actions justify-end">
-                  <button className="btn mt-4  bg-[#61adff] hover:bg-[#006ce1] text-white  ">
-                    View Detail
-                  </button>
+                  <Link to={`/bike-details/${bike?._id}`}>
+                    <button className="btn mt-4  bg-[#61adff] hover:bg-[#006ce1] text-white  ">
+                      View Detail
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

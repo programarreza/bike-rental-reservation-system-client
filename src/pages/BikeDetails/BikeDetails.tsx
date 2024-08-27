@@ -1,7 +1,7 @@
 const BikeDetails = () => {
   return (
-    <div>
-      <h2>BikeDetails Component Coming Soon</h2>
+    <div className="min-h-screen ">
+      <h2 className="mt-24">BikeDetails Component Coming Soon</h2>
     </div>
   );
 };

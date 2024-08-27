@@ -9,6 +9,7 @@ import UserDashboard from "../components/layout/UserDashboard";
 import Profile from "../pages/userDashboard/Profile";
 import BikeListing from "../pages/userDashboard/BikeListing";
 import MyRentals from "../pages/userDashboard/MyRentals";
+import BikeDetails from "../pages/BikeDetails/BikeDetails";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "bike-details/:id",
+        element: <BikeDetails />,
       },
     ],
   },

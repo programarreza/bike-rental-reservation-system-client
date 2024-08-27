@@ -28,7 +28,7 @@ const Profile = () => {
 
         <div className="w-full md:m-4 bg-[#162C46] p-4 ">
           <div className="flex justify-between mb-6">
-            <h3>My Profile</h3>
+            <h3 className="text-center w-full">My Profile</h3>
             <FiEdit size={20} />
           </div>
 

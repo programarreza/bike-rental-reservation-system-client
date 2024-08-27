@@ -10,6 +10,9 @@ import Profile from "../pages/userDashboard/Profile";
 import BikeListing from "../pages/userDashboard/BikeListing";
 import MyRentals from "../pages/userDashboard/MyRentals";
 import BikeDetails from "../pages/BikeDetails/BikeDetails";
+import AdminDashboard from "../components/layout/AdminDashboard";
+import CreateBike from "../pages/adminDashboard/CreateBike";
+import BikeManagement from "../pages/adminDashboard/BikeManagement";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +61,25 @@ const router = createBrowserRouter([
       {
         path: "/user-dashboard/my-rentals",
         element: <MyRentals />,
+      },
+    ],
+  },
+
+  {
+    path: "/admin-dashboard",
+    element: <AdminDashboard />,
+    children: [
+      {
+        path: "/admin-dashboard/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/admin-dashboard/create-bike",
+        element: <CreateBike />,
+      },
+      {
+        path: "/admin-dashboard/bike-management",
+        element: <BikeManagement />,
       },
     ],
   },

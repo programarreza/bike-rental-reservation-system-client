@@ -52,6 +52,17 @@ const bikesApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["bike"],
     }),
+
+    updateBike: builder.mutation({
+      query: (bikeInfo) => {
+        return {
+          url: `/bikes/${bikeInfo.bikeId}`,
+          method: "PUT",
+          body: bikeInfo.bike,
+        };
+      },
+      invalidatesTags: ["bike"],
+    }),
   }),
 });
 
@@ -59,4 +70,5 @@ export const {
   useGetAllBikesQuery,
   useGetSingleBikeQuery,
   useAddBikeMutation,
+  useUpdateBikeMutation
 } = bikesApi;

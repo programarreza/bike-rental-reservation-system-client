@@ -1,5 +1,6 @@
 import { useGetAllBikesQuery } from "../../redux/features/bikes/bikesApi";
 import CreateBike from "./CreateBike";
+import UpdateBike from "./UpdateBike";
 
 const BikeManagement = () => {
   const { data } = useGetAllBikesQuery(undefined);
@@ -13,10 +14,8 @@ const BikeManagement = () => {
         </h2>
       ) : (
         <div className="ml-4">
-          <div className="flex justify-between"> 
-            <div>
-              filter area
-            </div>
+          <div className="flex justify-between">
+            <div>filter area</div>
             <div>
               {/* Modal Trigger Button */}
               <label htmlFor="my_modal_6" className="btn btn-primary">
@@ -42,46 +41,53 @@ const BikeManagement = () => {
                 </tr>
               </thead>
               <tbody>
-                {bikeData?.map((bike) => (
-                  <tr key={bike._id}>
-                    <td>
-                      <div className="flex items-center gap-3">
-                        <div className="avatar">
-                          <div className="mask mask-squircle w-12 h-12">
-                            <img src={bike?.image} />
+                {bikeData?.map((bike) => {
+                  const modalId = `modal_${bike._id}`; // Unique ID for each bike
+                  return (
+                    <tr key={bike._id}>
+                      <td>
+                        <div className="flex items-center gap-3">
+                          <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                              <img src={bike?.image} alt={bike?.name} />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </td>
-                    <td className="font-bold">{bike?.name}</td>
-                    <td>
-                      <div className="">
-                        {bike?.description.length > 30
-                          ? bike?.description.substring(0, 30) + "..."
-                          : bike?.description}
-                      </div>
-                    </td>
-
-                    <td>{bike?.cc}</td>
-                    <td>{bike?.year}</td>
-                    <td>{bike?.brand}</td>
-                    <td>{bike?.model}</td>
-
-                    <th>
-                      <button className="btn border-non btn-xs">Update</button>
-                    </th>
-                    <th>
-                      <button className="btn border-non btn-xs">Delete</button>
-                    </th>
-                  </tr>
-                ))}
+                      </td>
+                      <td className="font-bold">{bike?.name}</td>
+                      <td>
+                        <div className="">
+                          {bike?.description.length > 30
+                            ? bike?.description.substring(0, 30) + "..."
+                            : bike?.description}
+                        </div>
+                      </td>
+                      <td>{bike?.cc}</td>
+                      <td>{bike?.year}</td>
+                      <td>{bike?.brand}</td>
+                      <td>{bike?.model}</td>
+                      <th>
+                        {/* Modal Trigger Button */}
+                        <label
+                          htmlFor={modalId}
+                          className="btn border-non btn-xs"
+                        >
+                          Update
+                        </label>
+                      </th>
+                      <th>
+                        <button className="btn border-non btn-xs">Delete</button>
+                      </th>
+                      {/* UpdateBike Modal */}
+                      <UpdateBike my_modal_7={modalId} bikeId={bike._id} />
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
         </div>
       )}
-      {/* CreateBike Modal */}
-      <CreateBike my_modal_6="my_modal_6" />
     </div>
   );
 };

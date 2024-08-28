@@ -1,18 +1,46 @@
+import Swal from "sweetalert2";
 import {
+  useDeleteUserMutation,
   useGetAllUsersQuery,
   useUpdateUserMutation,
 } from "../../redux/features/user/userApi";
+import { useAppSelector } from "../../redux/hooks";
+import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 
 const UserManagement = () => {
   const { data } = useGetAllUsersQuery(undefined);
+  const currentUser = useAppSelector(selectCurrentUser);
   const userData = data?.data;
   const [updateUser] = useUpdateUserMutation();
+  const [deleteUser] = useDeleteUserMutation();
 
   const makeAdmin = (id: string) => {
     console.log(id);
     const data = { role: "admin" };
     const args = { id, data };
     updateUser(args);
+  };
+
+  const handleDeleteUser = (id: string) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteUser(id);
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
   };
 
   return (
@@ -32,7 +60,6 @@ const UserManagement = () => {
                   <th>name</th>
                   <th>email</th>
                   <th>phone</th>
-                  <th>address</th>
                   <th>role</th>
                   <th>action</th>
                   <th>action</th>
@@ -54,7 +81,6 @@ const UserManagement = () => {
                       <td className="font-bold">{user?.name}</td>
                       <td>{user?.email}</td>
                       <td>{user?.phone}</td>
-                      <td>{user?.address}</td>
                       <td>{user?.role}</td>
                       <th>
                         {user?.role === "user" ? (
@@ -71,12 +97,18 @@ const UserManagement = () => {
                         )}
                       </th>
                       <th>
-                        <button
-                          // onClick={() => handleDeleteBike(bike?._id)}
-                          className="btn border-non btn-xs"
-                        >
-                          Delete
-                        </button>
+                        {user?.email === currentUser?.email ? (
+                          <button disabled className="btn border-non btn-sm">
+                            Delete
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => handleDeleteUser(user?._id)}
+                            className="btn border-non btn-sm"
+                          >
+                            Delete
+                          </button>
+                        )}
                       </th>
                     </tr>
                   );

@@ -37,11 +37,13 @@ const UserSidebar = () => {
                   X
                 </label>
               </div>
-              <div className="flex items-center gap-3 mb-12 shadow-xl">
+              <Link
+                to={"/"}
+                className="flex items-center gap-3 mb-12 shadow-xl"
+              >
                 <img className="w-16" src={logo} alt="" />
                 <h2 className="text-3xl font-bold">Bike rental</h2>
-                {/* Page content here */}
-              </div>
+              </Link>
 
               <div className="text-base mb-5 shadow-2xl border-b border-gray-800">
                 <Link to={"/user-dashboard/profile"}>
@@ -74,10 +76,10 @@ const UserSidebar = () => {
 
       {/* show to XL */}
       <div className="h-screen hidden xl:block bg-[#081B29] text-white p-6 fixed">
-        <div className="flex items-center gap-3 mb-12 shadow-xl">
+        <Link to={"/"} className="flex items-center gap-3 mb-12 shadow-xl">
           <img className="w-16" src={logo} alt="" />
           <h2 className="text-3xl font-bold">Bike rental</h2>
-        </div>
+        </Link>
 
         <div className="text-base mb-5 shadow-2xl border-b border-gray-800">
           <Link to={"/user-dashboard/profile"}>

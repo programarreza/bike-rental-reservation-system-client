@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -37,11 +36,8 @@ const Login = () => {
       if (res?.data?.success) {
         toast.success(res?.data?.message);
       }
-    } catch (error: any) {
-      toast.error(error?.data?.message || "Something went wrong", {
-        duration: 1000,
-      });
-      console.log("Error", error);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -104,11 +100,7 @@ const Login = () => {
                       onClick={() => setIsShow(!isShow)}
                       className="text-xl absolute cursor-pointer mt-7 ml-[290px]"
                     >
-                      {isShow ? (
-                        <FaEyeSlash size={25} />
-                      ) : (
-                        <FaEye size={25} />
-                      )}
+                      {isShow ? <FaEyeSlash size={25} /> : <FaEye size={25} />}
                     </p>
 
                     <button

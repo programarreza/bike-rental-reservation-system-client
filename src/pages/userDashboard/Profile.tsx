@@ -2,6 +2,7 @@ import { FiEdit } from "react-icons/fi";
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 import { useGetMeQuery } from "../../redux/features/user/userApi";
 import { useAppSelector } from "../../redux/hooks";
+import UpdateProfile from "../adminDashboard/UpdateProfile";
 
 
 const Profile = () => {
@@ -29,7 +30,17 @@ const Profile = () => {
         <div className="w-full md:m-4 bg-[#162C46] p-4 ">
           <div className="flex justify-between mb-6">
             <h3 className="text-center w-full">My Profile</h3>
-            <FiEdit size={20} />
+            
+            <div>
+              {/* Modal Trigger Button */}
+              <label
+                htmlFor="my_modal_8"
+                className="btn btn-sm bg-[#61adff] hover:bg-[#006ce1] text-white "
+              >
+               <FiEdit size={20} />
+              </label>
+              <UpdateProfile my_modal_8="my_modal_8"/>
+            </div>
           </div>
 
           <div className="flex mb-12">

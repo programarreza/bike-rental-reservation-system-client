@@ -36,6 +36,11 @@ const CreateBike = ({ my_modal_6 }) => {
       if (res?.data?.success) {
         reset();
         toast.success(res?.data?.message);
+        // Close the modal by unchecking the checkbox
+        const modalCheckbox = document.getElementById(my_modal_6);
+        if (modalCheckbox) {
+          modalCheckbox.checked = false;
+        }
       }
     } catch (error: any) {
       toast.error(error?.data?.message || "Something went wrong", {

@@ -1,10 +1,37 @@
-import { useGetAllBikesQuery } from "../../redux/features/bikes/bikesApi";
+import Swal from "sweetalert2";
+import {
+  useDeleteBikeMutation,
+  useGetAllBikesQuery,
+} from "../../redux/features/bikes/bikesApi";
 import CreateBike from "./CreateBike";
 import UpdateBike from "./UpdateBike";
 
 const BikeManagement = () => {
   const { data } = useGetAllBikesQuery(undefined);
+  const [deleteBike] = useDeleteBikeMutation();
+
   const bikeData = data?.data;
+
+  const handleDeleteBike = (id: string) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteBike(id);
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -76,10 +103,16 @@ const BikeManagement = () => {
                         </label>
                       </th>
                       <th>
-                        <button className="btn border-non btn-xs">Delete</button>
+                        <button
+                          onClick={() => handleDeleteBike(bike?._id)}
+                          className="btn border-non btn-xs"
+                        >
+                          Delete
+                        </button>
                       </th>
                       {/* UpdateBike Modal */}
                       <UpdateBike my_modal_7={modalId} bikeId={bike._id} />
+                      <CreateBike my_modal_6="my_modal_6" />
                     </tr>
                   );
                 })}

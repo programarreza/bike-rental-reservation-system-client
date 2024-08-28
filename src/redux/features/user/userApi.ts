@@ -22,7 +22,33 @@ export const userApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["user"],
     }),
+
+    getAllUsers: builder.query({
+      query: () => {
+        return {
+          url: "/users",
+          method: "GET",
+        };
+      },
+      providesTags: ["user"],
+    }),
+
+    updateUser: builder.mutation({
+      query: (args) => {
+        return {
+          url: `/users/${args.id}`,
+          method: "PATCH",
+          body: args.data,
+        };
+      },
+      invalidatesTags: ["user"],
+    }),
   }),
 });
 
-export const { useGetMeQuery, useUpdateMeMutation } = userApi;
+export const {
+  useGetMeQuery,
+  useUpdateMeMutation,
+  useGetAllUsersQuery,
+  useUpdateUserMutation,
+} = userApi;

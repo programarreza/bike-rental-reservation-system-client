@@ -37,24 +37,18 @@ const AdminSidebar = () => {
                   X
                 </label>
               </div>
-              <div className="flex items-center gap-3 mb-12 shadow-xl">
+              <Link
+                to={"/"}
+                className="flex items-center gap-3 mb-12 shadow-xl"
+              >
                 <img className="w-16" src={logo} alt="" />
                 <h2 className="text-3xl font-bold">Bike rental</h2>
-                {/* Page content here */}
-              </div>
+              </Link>
 
               <div className="text-base mb-5 shadow-2xl border-b border-gray-800">
                 <Link to={"/admin-dashboard/profile"}>
                   <h3 className="flex items-center gap-3 pb-4">
                     <PiUserSwitchBold size={20} /> <span>Profile</span>
-                  </h3>
-                </Link>
-              </div>
-
-              <div className="text-base mb-5 border-b border-gray-800">
-                <Link to={"/admin-dashboard/create-bike"}>
-                  <h3 className="flex items-center gap-3 pb-3">
-                    <FaUsersCog size={20} /> <span>Create Bike</span>
                   </h3>
                 </Link>
               </div>
@@ -66,6 +60,13 @@ const AdminSidebar = () => {
                   </h3>
                 </Link>
               </div>
+              <div className="text-base mb-5 border-b border-gray-800">
+                <Link to={"/admin-dashboard/user-management"}>
+                  <h3 className="flex items-center gap-3 pb-3">
+                    <FaUsersCog size={20} /> <span> User Management</span>
+                  </h3>
+                </Link>
+              </div>
             </div>
           </ul>
         </div>
@@ -73,10 +74,10 @@ const AdminSidebar = () => {
 
       {/* show to XL */}
       <div className="h-screen hidden xl:block bg-[#081B29] text-white p-6 fixed">
-        <div className="flex items-center gap-3 mb-12 shadow-xl">
+        <Link to={"/"} className="flex items-center gap-3 mb-12 shadow-xl">
           <img className="w-16" src={logo} alt="" />
           <h2 className="text-3xl font-bold">Bike rental</h2>
-        </div>
+        </Link>
 
         <div className="text-base mb-5 shadow-2xl border-b border-gray-800">
           <Link to={"/admin-dashboard/profile"}>
@@ -87,17 +88,17 @@ const AdminSidebar = () => {
         </div>
 
         <div className="text-base mb-5 border-b border-gray-800">
-          <Link to={"/admin-dashboard/create-bike"}>
+          <Link to={"/admin-dashboard/bike-management"}>
             <h3 className="flex items-center gap-3 pb-3">
-              <FaUsersCog size={20} /> <span>Create Bike</span>
+              <FaUsersCog size={20} /> <span> Bike Management</span>
             </h3>
           </Link>
         </div>
 
         <div className="text-base mb-5 border-b border-gray-800">
-          <Link to={"/admin-dashboard/bike-management"}>
+          <Link to={"/admin-dashboard/user-management"}>
             <h3 className="flex items-center gap-3 pb-3">
-              <FaUsersCog size={20} /> <span> Bike Management</span>
+              <FaUsersCog size={20} /> <span> User Management</span>
             </h3>
           </Link>
         </div>

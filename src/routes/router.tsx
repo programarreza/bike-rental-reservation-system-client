@@ -13,6 +13,7 @@ import BikeDetails from "../pages/BikeDetails/BikeDetails";
 import AdminDashboard from "../components/layout/AdminDashboard";
 import CreateBike from "../pages/adminDashboard/CreateBike";
 import BikeManagement from "../pages/adminDashboard/BikeManagement";
+import UserManagement from "../pages/adminDashboard/UserManagement";
 
 const router = createBrowserRouter([
   {
@@ -74,12 +75,12 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "/admin-dashboard/create-bike",
-        element: <CreateBike />,
-      },
-      {
         path: "/admin-dashboard/bike-management",
         element: <BikeManagement />,
+      },
+      {
+        path: "/admin-dashboard/user-management",
+        element: <UserManagement />,
       },
     ],
   },

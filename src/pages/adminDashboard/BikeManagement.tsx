@@ -5,11 +5,18 @@ import {
 } from "../../redux/features/bikes/bikesApi";
 import CreateBike from "./CreateBike";
 import UpdateBike from "./UpdateBike";
+import { useState } from "react";
 
 const BikeManagement = () => {
-  const { data } = useGetAllBikesQuery(undefined);
+  const [brand, setBrand] = useState("");
+  const [model, setModel] = useState("");
   const [deleteBike] = useDeleteBikeMutation();
 
+  const queryArgs = [];
+  if (brand) queryArgs.push({ name: "brand", value: brand });
+  if (model) queryArgs.push({ name: "model", value: model });
+
+  const { data } = useGetAllBikesQuery(queryArgs);
   const bikeData = data?.data;
 
   const handleDeleteBike = (id: string) => {
@@ -40,12 +47,41 @@ const BikeManagement = () => {
           Not Available bikeData{" "}
         </h2>
       ) : (
-        <div className="ml-4">
+        <div className="mx-4 mt-8">
           <div className="flex justify-between">
-            <div>filter area</div>
+            {/* Filter area */}
+            {/* Filter by brand */}
+            <select
+              className="select select-bordered w-full max-w-xs mb-4"
+              value={brand}
+              onChange={(e) => setBrand(e.target.value)}
+            >
+              <option value="" disabled selected>
+                Select Brand
+              </option>
+              <option value="Yamaha">Yamaha</option>
+              <option value="hero">Hero</option>
+            </select>
+
+            {/* Filter by model */}
+            <select
+              className="select select-bordered w-full max-w-xs"
+              value={model}
+              onChange={(e) => setModel(e.target.value)}
+            >
+              <option value="" disabled selected>
+                Select Model
+              </option>
+              <option value="fzs v3">fzs v3</option>
+              <option value="hero x100">hero x100</option>
+            </select>
+
             <div>
               {/* Modal Trigger Button */}
-              <label htmlFor="my_modal_6" className="btn btn-primary">
+              <label
+                htmlFor="my_modal_6"
+                className="btn  bg-[#61adff] hover:bg-[#006ce1] text-white "
+              >
                 Add New Bike
               </label>
             </div>

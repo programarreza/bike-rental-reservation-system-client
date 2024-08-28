@@ -36,7 +36,7 @@ const BikeListing = () => {
             Select Brand
           </option>
           <option value="Yamaha">Yamaha</option>
-          <option value="Hero">Hero</option>
+          <option value="hero">Hero</option>
         </select>
 
         {/* Filter by model */}

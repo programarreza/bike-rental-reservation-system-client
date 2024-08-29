@@ -3,7 +3,7 @@ import { useMyRentQuery } from "../../redux/features/rent/rentApi";
 import moment from "moment";
 
 const MyRentals = () => {
-  const [isPaidTab, setIsPaidTab] = useState(true);
+  const [isPaidTab, setIsPaidTab] = useState(false);
   const { data, refetch } = useMyRentQuery(isPaidTab.toString());
   const myRent = data?.data;
 

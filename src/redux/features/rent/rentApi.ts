@@ -14,7 +14,7 @@ export const rentApi = baseApi.injectEndpoints({
       query: (isPaid) => {
         console.log("from api", isPaid);
         return {
-          url: `/rentals?isPaid=${isPaid}`,
+          url: `/rentals/me?isPaid=${isPaid}`,
           method: "GET",
         };
       },

@@ -9,7 +9,18 @@ export const rentApi = baseApi.injectEndpoints({
         body: rentInfo,
       }),
     }),
+
+    myRent: builder.query({
+      query: (isPaid) => {
+        console.log("from api", isPaid);
+        return {
+          url: `/rentals?isPaid=${isPaid}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["rent"],
+    }),
   }),
 });
 
-export const { useCreateRentMutation } = rentApi;
+export const { useCreateRentMutation, useMyRentQuery } = rentApi;

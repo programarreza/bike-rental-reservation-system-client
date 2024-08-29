@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useCreateRentMutation } from "../../../redux/features/rent/rentApi";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { TBookingResponse } from "../../../types";
 
-const Booking = ({ id, bikeId }) => {
+const Booking = ({ id, bikeId }: TBookingResponse) => {
   const { register, handleSubmit, reset } = useForm();
   const [createRent, { isLoading }] = useCreateRentMutation();
 
@@ -31,7 +33,7 @@ const Booking = ({ id, bikeId }) => {
       <input type="checkbox" id={id} className="modal-toggle" />
       <div className="modal">
         <div className="modal-box">
-        <label
+          <label
             htmlFor={id}
             className="absolute top-0 right-0 p-4 cursor-pointer"
           >

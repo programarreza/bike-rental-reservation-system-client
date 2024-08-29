@@ -40,6 +40,18 @@ export const rentApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["returnRent"],
     }),
+
+    createPayment: builder.mutation({
+      query: (transactionId) => {
+        console.log("from api", transactionId)
+        return {
+          url: "/payments/create-payment",
+          method: "POST",
+          body: transactionId,
+        };
+      },
+      invalidatesTags: ["returnRent"],
+    }),
   }),
 });
 
@@ -48,4 +60,5 @@ export const {
   useMyRentQuery,
   useGetReturnRentQuery,
   useAddReturnBikeMutation,
+  useCreatePaymentMutation,
 } = rentApi;

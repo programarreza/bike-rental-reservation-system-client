@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
-import { useMyRentQuery } from "../../redux/features/rent/rentApi";
+import {
+  useCreatePaymentMutation,
+  useMyRentQuery,
+} from "../../redux/features/rent/rentApi";
 import moment from "moment";
+import { ImSpinner6 } from "react-icons/im";
+import { TRent } from "../../types";
 
 const MyRentals = () => {
   const [isPaidTab, setIsPaidTab] = useState(false);
   const { data, refetch } = useMyRentQuery(isPaidTab.toString());
+  const [createPayment, { isLoading }] = useCreatePaymentMutation();
   const myRent = data?.data;
 
   // Refetch data whenever the isPaidTab state changes
@@ -12,13 +18,32 @@ const MyRentals = () => {
     refetch();
   }, [isPaidTab, refetch]);
 
+  const handlePayment = async (transactionId: string) => {
+    const tranInfo = {
+      transactionId,
+    };
+
+    const res = await createPayment(tranInfo);
+
+    if (res?.data?.data) {
+      window.location.replace(res?.data?.data);
+      console.log(res?.data?.data);
+    }
+  };
+
   return (
     <div>
-      <div className="border border-red-500 mt-6 flex gap-4">
-        <button className={`btn `} onClick={() => setIsPaidTab(false)}>
+      <div className=" mt-6 flex gap-4">
+        <button
+          className={`btn ${!isPaidTab ? "btn-active" : ""}`}
+          onClick={() => setIsPaidTab(false)}
+        >
           Unpaid Tab
         </button>
-        <button className={`btn `} onClick={() => setIsPaidTab(true)}>
+        <button
+          className={`btn ${isPaidTab ? "btn-active" : ""}`}
+          onClick={() => setIsPaidTab(true)}
+        >
           Paid Tab
         </button>
       </div>
@@ -39,11 +64,11 @@ const MyRentals = () => {
                   <th>total cost</th>
                   <th>advanced</th>
                   <th>transactionId</th>
-                  <th>action</th>
+                  {isPaidTab ? "" : <th>action</th>}
                 </tr>
               </thead>
               <tbody>
-                {myRent?.map((rent) => (
+                {myRent?.map((rent: TRent) => (
                   <tr key={rent._id}>
                     <td>
                       <div className="flex items-center gap-3">
@@ -78,10 +103,31 @@ const MyRentals = () => {
                       {rent?.advanced !== undefined ? rent.advanced : "N/A"}
                     </td>
                     <td>{rent?.transactionId || "N/A"}</td>
-                    <td>
-                      {/* Include action buttons or additional functionality here if needed */}
-                      <button className="btn w-24">Pay Now</button>
-                    </td>
+                    {!isPaidTab && rent?.totalCost > 0 ? (
+                      <td>
+                        <button
+                          onClick={() => handlePayment(rent?.transactionId)}
+                          className="btn w-24"
+                        >
+                          {isLoading ? (
+                            <ImSpinner6
+                              size={28}
+                              className="animate-spin m-auto"
+                            />
+                          ) : (
+                            "Pay Now"
+                          )}
+                        </button>
+                      </td>
+                    ) : (
+                      !isPaidTab && (
+                        <td>
+                          <button disabled className="btn w-24">
+                            Pay Now
+                          </button>
+                        </td>
+                      )
+                    )}
                   </tr>
                 ))}
               </tbody>

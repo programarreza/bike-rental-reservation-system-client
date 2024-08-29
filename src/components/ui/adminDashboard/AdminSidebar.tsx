@@ -1,6 +1,5 @@
 import { FaUsersCog } from "react-icons/fa";
 import { LuMenuSquare } from "react-icons/lu";
-import { MdOutlineCastForEducation } from "react-icons/md";
 import { PiUserSwitchBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
@@ -67,6 +66,13 @@ const AdminSidebar = () => {
                   </h3>
                 </Link>
               </div>
+              <div className="text-base mb-5 border-b border-gray-800">
+                <Link to={"/admin-dashboard/return-bike"}>
+                  <h3 className="flex items-center gap-3 pb-3">
+                    <FaUsersCog size={20} /> <span> Return Bike</span>
+                  </h3>
+                </Link>
+              </div>
             </div>
           </ul>
         </div>
@@ -99,6 +105,14 @@ const AdminSidebar = () => {
           <Link to={"/admin-dashboard/user-management"}>
             <h3 className="flex items-center gap-3 pb-3">
               <FaUsersCog size={20} /> <span> User Management</span>
+            </h3>
+          </Link>
+        </div>
+
+        <div className="text-base mb-5 border-b border-gray-800">
+          <Link to={"/admin-dashboard/return-bike"}>
+            <h3 className="flex items-center gap-3 pb-3">
+              <FaUsersCog size={20} /> <span> Return Bike</span>
             </h3>
           </Link>
         </div>

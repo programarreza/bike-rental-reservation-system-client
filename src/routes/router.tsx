@@ -15,6 +15,7 @@ import Register from "../pages/Register/Register";
 import BikeListing from "../pages/userDashboard/BikeListing";
 import MyRentals from "../pages/userDashboard/MyRentals";
 import Profile from "../pages/userDashboard/Profile";
+import ReturnBike from "../pages/adminDashboard/ReturnBike";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
       {
         path: "/admin-dashboard/user-management",
         element: <UserManagement />,
+      },
+      {
+        path: "/admin-dashboard/return-bike",
+        element: <ReturnBike />,
       },
     ],
   },

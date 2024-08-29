@@ -80,6 +80,7 @@ const MyRentals = () => {
                     <td>{rent?.transactionId || "N/A"}</td>
                     <td>
                       {/* Include action buttons or additional functionality here if needed */}
+                      <button className="btn w-24">Pay Now</button>
                     </td>
                   </tr>
                 ))}

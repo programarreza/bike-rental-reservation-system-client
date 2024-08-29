@@ -16,6 +16,7 @@ import BikeListing from "../pages/userDashboard/BikeListing";
 import MyRentals from "../pages/userDashboard/MyRentals";
 import Profile from "../pages/userDashboard/Profile";
 import ReturnBike from "../pages/adminDashboard/ReturnBike";
+import PaymentCancel from "../pages/PaymentCancel/PaymentCancel";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "payment/failed/:tranId",
         element: <PaymentFailed />,
+      },
+      {
+        path: "payment/cancel/:tranId",
+        element: <PaymentCancel />,
       },
     ],
   },

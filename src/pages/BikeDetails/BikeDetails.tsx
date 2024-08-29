@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useGetSingleBikeQuery } from "../../redux/features/bikes/bikesApi";
 import Container from "../../components/ui/Container/Container";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
+import Booking from "../../components/ui/userManagement/Booking";
 
 const BikeDetails = () => {
   const { id } = useParams();
@@ -47,10 +48,23 @@ const BikeDetails = () => {
             </p>
 
             <Link to={``}>
-              <button className="btn mt-4  bg-[#61adff] hover:bg-[#006ce1] text-white  ">
+              {/* Modal Trigger Button */}
+              {/* <label
+                htmlFor="my_modal_10"
+                className="btn  bg-[#61adff] hover:bg-[#006ce1] text-white "
+              >
                 Book now
-              </button>
+              </label> */}
             </Link>
+            {/* Modal Trigger Button */}
+            <label
+              htmlFor="my_modal_10"
+              className="btn  bg-[#61adff] hover:bg-[#006ce1] text-white "
+            >
+              Book now
+            </label>
+
+            <Booking id="my_modal_10" bikeId={`${bikeDetails?._id}`} />
           </div>
         </div>
       </Container>

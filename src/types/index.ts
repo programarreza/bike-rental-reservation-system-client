@@ -66,8 +66,8 @@ export type TError = {
 
 export type TResponse<T> = {
   data?: T;
-  // error?: TError;
   meta?: TMeta;
+  statusCode: number;
   success: boolean;
   message: string;
 };

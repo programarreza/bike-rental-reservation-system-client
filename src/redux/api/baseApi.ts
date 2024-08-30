@@ -8,10 +8,9 @@ import {
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
 
+import { toast } from "sonner";
 import { logout, setUser } from "../features/auth/authSlice";
 import { RootState } from "../store";
-import { toast } from "sonner";
-// import { toast } from "sonner";
 
 type CustomError = {
   status: number;
@@ -19,9 +18,9 @@ type CustomError = {
     message?: string;
   };
 };
-
+// https://bike-rental-reservation-system-server.vercel.app/
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:5000/api",
+  baseUrl: "https://bike-rental-reservation-system-server.vercel.app/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -45,7 +44,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
 
   if (result.error) {
     const error = result.error as CustomError; // Cast to CustomError
-    
+
     if (error.status === 404) {
       toast.error(error.data?.message || "Not Found");
     }
@@ -58,10 +57,13 @@ const baseQueryWithRefreshToken: BaseQueryFn<
       // Send Refresh Token
       console.log("Sending refresh token");
 
-      const res = await fetch("http://localhost:5000/api/auth/refresh-token", {
-        method: "POST",
-        credentials: "include",
-      });
+      const res = await fetch(
+        "https://bike-rental-reservation-system-server.vercel.app/api/auth/refresh-token",
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
 
       const data = await res.json();
       // console.log(data?.data?.accessToken);

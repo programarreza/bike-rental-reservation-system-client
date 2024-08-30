@@ -1,3 +1,4 @@
+import { TBike, TQueryParam, TResponseRedux } from "../../../types";
 import { baseApi } from "../../api/baseApi";
 
 const bikesApi = baseApi.injectEndpoints({
@@ -7,7 +8,7 @@ const bikesApi = baseApi.injectEndpoints({
         const params = new URLSearchParams();
 
         if (args) {
-          args.forEach((item) => {
+          args.forEach((item: TQueryParam) => {
             params.append(item.name, item.value as string);
           });
         }
@@ -19,7 +20,7 @@ const bikesApi = baseApi.injectEndpoints({
         };
       },
       providesTags: ["bike"],
-      transformResponse: (response) => {
+      transformResponse: (response: TResponseRedux<TBike[]>) => {
         return {
           data: response.data,
           meta: response.meta,
@@ -34,10 +35,9 @@ const bikesApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      transformResponse: (response) => {
+      transformResponse: (response: TResponseRedux<TBike>) => {
         return {
           data: response.data,
-          meta: response.meta,
         };
       },
     }),

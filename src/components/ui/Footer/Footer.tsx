@@ -11,7 +11,7 @@ import logo from "../../../assets/logo.png";
 
 const Footer = () => {
   return (
-    <div className=" p-24 ">
+    <div className=" p-4 pt-12 md:p-3 md:pt-24 lg:p-12 xl:p-24">
       <footer className="footer text-base ">
         <nav>
           <Link to={"/"}>
@@ -40,6 +40,7 @@ const Footer = () => {
             </Link>
           </div>
         </nav>
+
         <nav>
           <h6 className="text-2xl font-bold text-[#f57c48]">Quick Links</h6>
           <div className="flex justify-between gap-24">
@@ -64,6 +65,7 @@ const Footer = () => {
             <div className="flex flex-col gap-4"></div>
           </div>
         </nav>
+
         <nav>
           <h6 className="text-2xl font-bold text-[#f57c48]">Get Connected</h6>
           <div className="space-y-8">

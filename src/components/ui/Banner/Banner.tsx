@@ -15,7 +15,7 @@ const Banner = () => {
           <div>
             <h2
               style={{ backdropFilter: "blur(10px)" }}
-              className="text-white text-4xl rounded-xl  px-2 mb-4"
+              className="text-white text-2xl md:text-4xl rounded-xl  px-2 mb-4"
             >
               Ride Into Adventure - Affordable <br /> Bike Rentals Available
               Now!

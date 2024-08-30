@@ -45,7 +45,7 @@ const ContactUs = () => {
   return (
     <div className="min-h-screen shadow-sm bg-transparent ">
       <div className="relative   ">
-        <h2 className="flex justify-center items-center py-24 text-4xl font-semibold">
+        <h2 className="flex justify-center items-center md:py-24 text-4xl font-semibold">
           Let's Talk To Us
         </h2>
       </div>
@@ -55,9 +55,9 @@ const ContactUs = () => {
             <div className=" flex flex-col md:flex-row  rounded-xl justify-between">
               {/* form area */}
               <div className="  flex-shrink-0 shadow-sm">
-                <div className="card-body w-[800px] shadow-2xl rounded-xl p-12">
+                <div className="card-body w-[400px] md:w-[800px] shadow-2xl rounded-xl md:p-12">
                   <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="grid grid-cols-2 gap-8">
+                    <div className="grid md:grid-cols-2 gap-8">
                       <div className="form-control ">
                         <label className="label m-0 p-0">Name</label>
                         <div className=" border-b-2 border-0">
@@ -151,8 +151,8 @@ const ContactUs = () => {
 
           {/* contact info */}
           <div className=" flex justify-center items-center mt-24">
-            <div className="flex  justify-center items-center gap-12">
-              <div className="flex  items-center gap-3">
+            <div className="flex flex-col md:flex-row justify-center md:items-center gap-12 md:gap-2 lg:gap-12">
+              <div className="flex  items-center gap-3 ">
                 <div className="rounded-full bg-[#ff7527] size-10 flex justify-center items-center ">
                   <SiHomeadvisor size={25} />
                 </div>

@@ -18,9 +18,10 @@ type CustomError = {
     message?: string;
   };
 };
-// https://bike-rental-reservation-system-server.vercel.app/
+
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://bike-rental-reservation-system-server.vercel.app/api",
+  baseUrl:
+    "https://bike-rental-reservation-system-server.vercel.app/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -48,10 +49,6 @@ const baseQueryWithRefreshToken: BaseQueryFn<
     if (error.status === 404) {
       toast.error(error.data?.message || "Not Found");
     }
-
-    // if (result?.error?.status === 404) {
-    //   toast.error(result?.error?.data?.message);
-    // }
 
     if (result?.error?.status === 401) {
       // Send Refresh Token

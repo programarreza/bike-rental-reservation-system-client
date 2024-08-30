@@ -9,7 +9,7 @@ const Featured = () => {
   return (
     <div className="min-h-screen pt-12">
       <Container>
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid  md:grid-cols-3 gap-8">
           {featureBike?.data?.map((bike: TBike) => (
             <div className="card card-compact bg-base-100 shadow-xl">
               <figure>

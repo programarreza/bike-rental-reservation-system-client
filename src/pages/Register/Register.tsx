@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useSignUpMutation } from "../../redux/features/auth/authApi";
 import { imageUpload } from "../../utils/utils";
+import { SerializedError } from "@reduxjs/toolkit";
 
 const Register = () => {
   const [isShow, setIsShow] = useState(true);
@@ -21,9 +22,8 @@ const Register = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const image = data?.image[0];
-
       const imageData = await imageUpload(image);
-
+  
       const userInfo = {
         name: data.name,
         email: data.email,
@@ -32,20 +32,20 @@ const Register = () => {
         address: data.address,
         image: imageData?.data?.display_url,
       };
-
+  
       const res = await signUp(userInfo);
-      console.log(res);
-
+  
       if (res?.data?.success) {
         toast.success(res?.data?.message);
         navigate("/login");
-      }
-
-      if (res?.error?.status == 409) {
-        toast.error(error?.data?.message);
+      } else if (res?.error) {
+        const error = res.error as SerializedError;
+        // You can parse the error message or handle different cases here
+        toast.error(error.message || "An error occurred.");
       }
     } catch (error) {
-      toast.error(error?.response?.data?.error?.message);
+      console.log(error);
+      toast.error("An unexpected error occurred.");
     }
   };
 
@@ -145,11 +145,7 @@ const Register = () => {
                     onClick={() => setIsShow(!isShow)}
                     className="text-xl absolute cursor-pointer mt-7 ml-[290px]"
                   >
-                    {isShow ? (
-                      <FaEyeSlash size={25} />
-                    ) : (
-                      <FaEye size={25} />
-                    )}
+                    {isShow ? <FaEyeSlash size={25} /> : <FaEye size={25} />}
                   </p>
                 </div>
 

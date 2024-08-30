@@ -1,3 +1,4 @@
+import { TQueryParam } from "../../../types";
 import { baseApi } from "../../api/baseApi";
 
 const contactApi = baseApi.injectEndpoints({
@@ -7,7 +8,7 @@ const contactApi = baseApi.injectEndpoints({
         const params = new URLSearchParams();
 
         if (args) {
-          args.forEach((item) => {
+          args.forEach((item : TQueryParam) => {
             params.append(item.name, item.value as string);
           });
         }

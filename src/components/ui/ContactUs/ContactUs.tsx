@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FaPhoneAlt } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
@@ -35,7 +36,7 @@ const ContactUs = () => {
         toast.success(res?.data?.message);
         reset();
       }
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error?.message);
       console.log("Error", error);
     }
@@ -124,7 +125,6 @@ const ContactUs = () => {
                       <label className="label m-0 p-0">Message</label>
                       <div className=" border-b-2 border-0">
                         <textarea
-                          type="text"
                           {...register("message", { required: true })}
                           className=" outline-none bg-transparent w-full "
                         />

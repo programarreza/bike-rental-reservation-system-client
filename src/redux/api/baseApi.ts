@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   BaseQueryApi,
   BaseQueryFn,
@@ -10,6 +11,14 @@ import {
 import { logout, setUser } from "../features/auth/authSlice";
 import { RootState } from "../store";
 import { toast } from "sonner";
+// import { toast } from "sonner";
+
+type CustomError = {
+  status: number;
+  data?: {
+    message?: string;
+  };
+};
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:5000/api",
@@ -34,36 +43,43 @@ const baseQueryWithRefreshToken: BaseQueryFn<
 > = async (args, api, extraOptions): Promise<any> => {
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result?.error?.status === 404) {
-    toast.error(result?.error?.data?.message);
-  }
+  if (result.error) {
+    const error = result.error as CustomError; // Cast to CustomError
+    
+    if (error.status === 404) {
+      toast.error(error.data?.message || "Not Found");
+    }
 
-  if (result?.error?.status === 401) {
-    // Send Refresh Token
-    console.log("Sending refresh token");
+    // if (result?.error?.status === 404) {
+    //   toast.error(result?.error?.data?.message);
+    // }
 
-    const res = await fetch("http://localhost:5000/api/auth/refresh-token", {
-      method: "POST",
-      credentials: "include",
-    });
+    if (result?.error?.status === 401) {
+      // Send Refresh Token
+      console.log("Sending refresh token");
 
-    const data = await res.json();
-    // console.log(data?.data?.accessToken);
-    if (data?.data?.accessToken) {
-      const user = (api.getState() as RootState).auth.user;
+      const res = await fetch("http://localhost:5000/api/auth/refresh-token", {
+        method: "POST",
+        credentials: "include",
+      });
 
-      api.dispatch(
-        setUser({
-          user,
-          token: data.data.accessToken,
-        })
-      );
-      result = await baseQuery(args, api, extraOptions);
-    } else {
-      api.dispatch(logout());
+      const data = await res.json();
+      // console.log(data?.data?.accessToken);
+      if (data?.data?.accessToken) {
+        const user = (api.getState() as RootState).auth.user;
+
+        api.dispatch(
+          setUser({
+            user,
+            token: data.data.accessToken,
+          })
+        );
+        result = await baseQuery(args, api, extraOptions);
+      } else {
+        api.dispatch(logout());
+      }
     }
   }
-
   return result;
 };
 

@@ -6,6 +6,7 @@ import {
 } from "../../redux/features/user/userApi";
 import { useAppSelector } from "../../redux/hooks";
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
+import { TUser } from "../../types";
 
 const UserManagement = () => {
   const { data } = useGetAllUsersQuery(undefined);
@@ -66,7 +67,7 @@ const UserManagement = () => {
                 </tr>
               </thead>
               <tbody>
-                {userData?.map((user) => {
+                {userData?.map((user: TUser) => {
                   return (
                     <tr key={user._id}>
                       <td>

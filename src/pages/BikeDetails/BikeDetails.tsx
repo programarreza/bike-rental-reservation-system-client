@@ -32,7 +32,7 @@ const BikeDetails = () => {
               <FaBangladeshiTakaSign />
             </h3>
             <p>
-              {bikeDetails?.description.length > 500
+              {bikeDetails?.description?.length > 500
                 ? bikeDetails?.description.substring(0, 500) + "..."
                 : bikeDetails?.description}
             </p>

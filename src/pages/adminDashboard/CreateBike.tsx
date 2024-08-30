@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { ImSpinner6 } from "react-icons/im";
@@ -5,7 +6,7 @@ import { useAddBikeMutation } from "../../redux/features/bikes/bikesApi";
 import { toast } from "sonner";
 import { imageUpload } from "../../utils/utils";
 
-const CreateBike = ({ my_modal_6 }) => {
+const CreateBike = ({ my_modal_6 }: { my_modal_6: string }) => {
   const [addBike, { isLoading }] = useAddBikeMutation();
 
   const {
@@ -37,7 +38,9 @@ const CreateBike = ({ my_modal_6 }) => {
         reset();
         toast.success(res?.data?.message);
         // Close the modal by unchecking the checkbox
-        const modalCheckbox = document.getElementById(my_modal_6);
+        const modalCheckbox = document.getElementById(
+          my_modal_6
+        ) as HTMLInputElement;
         if (modalCheckbox) {
           modalCheckbox.checked = false;
         }

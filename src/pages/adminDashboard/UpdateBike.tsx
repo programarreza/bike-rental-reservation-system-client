@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { ImSpinner6 } from "react-icons/im";
@@ -8,7 +9,12 @@ import {
   useUpdateBikeMutation,
 } from "../../redux/features/bikes/bikesApi";
 
-const UpdateBike = ({ my_modal_7, bikeId }) => {
+type TUpdateBikeProps = {
+  my_modal_7: string;
+  bikeId: string;
+};
+
+const UpdateBike = ({ my_modal_7, bikeId }: TUpdateBikeProps) => {
   const [updateBike, { isLoading }] = useUpdateBikeMutation();
   const { data, isLoading: isFetching } = useGetSingleBikeQuery(bikeId);
   const bikeData = data?.data;
@@ -44,12 +50,14 @@ const UpdateBike = ({ my_modal_7, bikeId }) => {
         toast.success(res?.data?.message);
 
         // Close the modal by unchecking the checkbox
-        const modalCheckbox = document.getElementById(my_modal_7);
+        const modalCheckbox = document.getElementById(
+          my_modal_7
+        ) as HTMLInputElement;
         if (modalCheckbox) {
           modalCheckbox.checked = false;
         }
       }
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error?.data?.message || "Something went wrong", {
         duration: 1000,
       });

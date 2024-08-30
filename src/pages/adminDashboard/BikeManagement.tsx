@@ -6,6 +6,7 @@ import {
 import CreateBike from "./CreateBike";
 import UpdateBike from "./UpdateBike";
 import { useState } from "react";
+import { TBike } from "../../types";
 
 const BikeManagement = () => {
   const [brand, setBrand] = useState("");
@@ -104,7 +105,7 @@ const BikeManagement = () => {
                 </tr>
               </thead>
               <tbody>
-                {bikeData?.map((bike) => {
+                {bikeData?.map((bike: TBike) => {
                   const modalId = `modal_${bike._id}`; // Unique ID for each bike
                   return (
                     <tr key={bike._id}>

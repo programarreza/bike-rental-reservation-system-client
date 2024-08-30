@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useGetAllBikesQuery } from "../../redux/features/bikes/bikesApi";
 import { Link } from "react-router-dom";
+import { TBike } from "../../types";
 
 const BikeListing = () => {
   const [brand, setBrand] = useState("");
@@ -13,7 +14,7 @@ const BikeListing = () => {
 
   const { data } = useGetAllBikesQuery(queryArgs);
 
-  const bikeData = data?.data;
+  const bikeData = data?.data ?? [];
 
   const handleClearFilter = () => {
     setBrand("");
@@ -63,7 +64,7 @@ const BikeListing = () => {
       {/* Bike info area */}
       <div className="  w-full p-4 shadow-xl rounded-lg">
         {bikeData?.length > 0 ? (
-          bikeData.map((bike) => (
+          bikeData?.map((bike: TBike) => (
             <div key={bike._id} className="mb-4 flex justify-between ">
               <div className=" flex-1 ">
                 <img src={bike?.image} alt="" />

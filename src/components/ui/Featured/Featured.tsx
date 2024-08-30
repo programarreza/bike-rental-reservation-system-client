@@ -4,7 +4,7 @@ import { TBike } from "../../../types";
 import Container from "../Container/Container";
 
 const Featured = () => {
-  const { data: featureBike } = useGetAllBikesQuery(undefined);
+  const { data: featureBike } = useGetAllBikesQuery([]);
 
   return (
     <div className="min-h-screen pt-12">

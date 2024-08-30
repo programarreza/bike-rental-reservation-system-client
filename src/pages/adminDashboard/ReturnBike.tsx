@@ -4,6 +4,7 @@ import {
   useGetReturnRentQuery,
 } from "../../redux/features/rent/rentApi";
 import { toast } from "sonner";
+import { TRent } from "../../types";
 
 const ReturnBike = () => {
   const { data } = useGetReturnRentQuery(undefined);
@@ -41,7 +42,7 @@ const ReturnBike = () => {
                 </tr>
               </thead>
               <tbody>
-                {returnData?.map((rent) => (
+                {returnData?.map((rent: TRent) => (
                   <tr key={rent._id}>
                     <td>
                       <div className="flex items-center gap-3">

@@ -42,7 +42,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="min-h-screen shadow-2xl bg-transparent ">
+    <div className="min-h-screen shadow-sm bg-transparent ">
       <div className="relative   ">
         <h2 className="flex justify-center items-center py-24 text-4xl font-semibold">
           Let's Talk To Us
@@ -53,7 +53,7 @@ const ContactUs = () => {
           <div className="hero">
             <div className=" flex flex-col md:flex-row  rounded-xl justify-between">
               {/* form area */}
-              <div className="  flex-shrink-0 shadow-2xl">
+              <div className="  flex-shrink-0 shadow-sm">
                 <div className="card-body w-[800px] shadow-2xl rounded-xl p-12">
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid grid-cols-2 gap-8">

@@ -17,6 +17,7 @@ import MyRentals from "../pages/userDashboard/MyRentals";
 import Profile from "../pages/userDashboard/Profile";
 import ReturnBike from "../pages/adminDashboard/ReturnBike";
 import PaymentCancel from "../pages/PaymentCancel/PaymentCancel";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -64,7 +65,11 @@ const router = createBrowserRouter([
 
   {
     path: "/user-dashboard",
-    element: <UserDashboard />,
+    element: (
+      <ProtectedRoute role="user">
+        <UserDashboard />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "/user-dashboard/profile",
@@ -83,7 +88,11 @@ const router = createBrowserRouter([
 
   {
     path: "/admin-dashboard",
-    element: <AdminDashboard />,
+    element: (
+      <ProtectedRoute role="admin">
+        <AdminDashboard />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "/admin-dashboard/profile",

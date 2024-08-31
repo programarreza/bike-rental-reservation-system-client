@@ -11,7 +11,7 @@ const Profile = () => {
   const user = userData?.data;
 
   return (
-    <div className="flex flex-col pr-6 md:pr-0 md:flex-row text-white bg-[#001E2B] min-h-screen pt-16 xl:pt-0">
+    <div className="flex flex-col md:flex-row text-white bg-[#001E2B] min-h-screen pt-16 xl:pt-0">
       {user ? (
         <>
           <div className=" md:w-1/4 flex justify-center py-4 my-0 px-4 bg-[#162C46]">

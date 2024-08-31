@@ -52,7 +52,7 @@ const BikeManagement = () => {
   };
 
   return (
-    <div className="bg-[#162C46] min-h-screen text-white">
+    <div className="bg-[#162C46] min-h-screen text-white pt-6 xl:pt-0">
       {isLoading ? (
         <div className="flex justify-center items-center min-h-screen">
           <ImSpinner6 size={50} className="animate-spin m-auto" />

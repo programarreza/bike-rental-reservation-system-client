@@ -47,7 +47,7 @@ const router = createBrowserRouter([
       {
         path: "bike-details/:id",
         element: (
-          <ProtectedRoute role="undefined">
+          <ProtectedRoute role="user">
             <BikeDetails />
           </ProtectedRoute>
         ),
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
       {
         path: "payment/success/:tranId",
         element: (
-          <ProtectedRoute role="undefined">
+          <ProtectedRoute role="user">
             <PaymentSuccessful />
           </ProtectedRoute>
         ),
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
       {
         path: "payment/failed/:tranId",
         element: (
-          <ProtectedRoute role="undefined">
+          <ProtectedRoute role="user">
             <PaymentFailed />
           </ProtectedRoute>
         ),
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
       {
         path: "payment/cancel/:tranId",
         element: (
-          <ProtectedRoute role="undefined">
+          <ProtectedRoute role="user">
             <PaymentCancel />
           </ProtectedRoute>
         ),

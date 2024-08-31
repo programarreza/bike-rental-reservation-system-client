@@ -35,10 +35,12 @@ const BikeListing = () => {
   };
 
   return (
-    <div className="flex gap-12 text-white bg-[#162C46]">
+    <div className="flex gap-4 lg:gap-6 text-white bg-[#162C46]">
       {/* Filter area */}
-      <div className="w-1/3 p-4 shadow-xl rounded-lg min-h-screen">
-        <h2 className="text-2xl font-bold text-center py-4">Find Your Bike</h2>
+      <div className="w-1/3 p-4 hidden md:block shadow-xl rounded-lg min-h-screen">
+        <h2 className="ml-6 lg:text-2xl font-bold text-center py-4">
+          Find Your Bike
+        </h2>
 
         {/* Filter by brand */}
         <select
@@ -86,10 +88,10 @@ const BikeListing = () => {
           bikeData.map((bike: TBike) => (
             <div
               key={bike._id}
-              className="mb-4 flex justify-between shadow-2xl p-2"
+              className="mb-4 flex flex-col md:flex-row justify-between shadow-2xl p-2 gap-12 lg:gap-6"
             >
               <div className="flex-1">
-                <img src={bike.image} alt="" />
+                <img className="h-full w-full" src={bike.image} alt="" />
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-semibold">{bike.name}</h3>

@@ -81,10 +81,10 @@ const UpdateBike = ({ my_modal_7, bikeId }: TUpdateBikeProps) => {
             <div className="card card-compact bg-[#162C46]">
               {/* Form content */}
               <div className="hero">
-                <div className="hero-content flex flex-col md:flex-row rounded-xl justify-between">
+                <div className="hero-content flex flex-col md:flex-row rounded-xl justify-between p-0 md:p-4">
                   {/* form area */}
                   <div className="card flex-shrink-0 shadow-2xl">
-                    <div className="card-body w-[300px] md:w-[370px] rounded-md">
+                    <div className="card-body w-[290px] md:w-[370px] rounded-md">
                       <form onSubmit={handleSubmit(onSubmit)} className="">
                         <div className="form-control">
                           <label className="label"></label>
@@ -192,7 +192,7 @@ const UpdateBike = ({ my_modal_7, bikeId }: TUpdateBikeProps) => {
                           )}
                         </div>
 
-                        <div>
+                        <div className="mt-4">
                           <label htmlFor="image" className="block mb-2 text-sm">
                             Select Bike Image:
                           </label>

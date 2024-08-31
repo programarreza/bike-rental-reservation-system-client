@@ -44,7 +44,7 @@ const MyRentals = () => {
           </div>
         ) : (
           <div>
-            <div className="py-6 flex gap-4">
+            <div className="pl-12 xl:pl-0 py-6 flex gap-4">
               <button
                 className={`btn bg-[#61adff] text-white ${
                   !isPaidTab ? "bg-[#006ce1]" : ""

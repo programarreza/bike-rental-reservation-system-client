@@ -44,7 +44,7 @@ const UserManagement = () => {
   };
 
   return (
-    <div className="text-white bg-[#162C46] min-h-screen">
+    <div className="text-white bg-[#162C46] min-h-screen pt-6 xl:pt-0">
       {isLoading ? (
         <div className="flex justify-center items-center min-h-screen">
           <ImSpinner6 size={50} className="animate-spin m-auto" />

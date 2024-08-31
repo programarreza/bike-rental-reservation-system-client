@@ -81,10 +81,10 @@ const UpdateProfile = ({ my_modal_8 }: { my_modal_8: string }) => {
               </h2>
               {/* Form content */}
               <div className="hero ">
-                <div className="hero-content flex flex-col md:flex-row rounded-xl justify-between">
+                <div className="hero-content flex flex-col md:flex-row rounded-xl justify-between p-0 md:p-4">
                   {/* form area */}
                   <div className="card flex-shrink-0 shadow-2xl">
-                    <div className="card-body w-[300px] md:w-[390px] rounded-md">
+                    <div className="card-body w-[290px] md:w-[390px] rounded-md">
                       <form onSubmit={handleSubmit(onSubmit)} className="">
                         <div className="form-control">
                           <input
@@ -148,7 +148,7 @@ const UpdateProfile = ({ my_modal_8 }: { my_modal_8: string }) => {
                           )}
                         </div>
 
-                        <div>
+                        <div className="mt-4">
                           <label htmlFor="image" className="block mb-2 text-sm">
                             Select Profile Image:
                           </label>

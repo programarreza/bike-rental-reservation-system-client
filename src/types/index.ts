@@ -85,3 +85,8 @@ export type CustomError = {
     message?: string;
   };
 };
+
+export type TJwtPayload = {
+  email: string;
+  role: string; 
+}

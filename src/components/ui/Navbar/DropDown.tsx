@@ -5,6 +5,7 @@ import {
   selectCurrentUser,
 } from "../../../redux/features/auth/authSlice";
 import { useGetMeQuery } from "../../../redux/features/user/userApi";
+import { Link } from "react-router-dom";
 
 const DropDown = () => {
   const [isShow, setIsShow] = useState(false);
@@ -20,13 +21,13 @@ const DropDown = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    setShouldRefetch(true); 
+    setShouldRefetch(true);
   };
 
   useEffect(() => {
     if (shouldRefetch) {
       refetch();
-      setShouldRefetch(false); 
+      setShouldRefetch(false);
     }
   }, [shouldRefetch, refetch]);
 
@@ -56,6 +57,11 @@ const DropDown = () => {
           </li>
           <li>
             <a className="justify-between">{user?.email}</a>
+          </li>
+          <li>
+            <Link to={`/${user?.role}-dashboard`}>
+              <button>My Dashboard</button>
+            </Link>
           </li>
           <li>
             <button onClick={handleLogout}>Logout</button>

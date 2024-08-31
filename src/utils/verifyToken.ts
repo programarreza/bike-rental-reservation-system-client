@@ -1,4 +1,6 @@
 import { jwtDecode } from "jwt-decode";
-export const verifyToken = (token: string) => {
+import { TJwtPayload } from "../types";
+
+export const verifyToken = (token: string): TJwtPayload => {
   return jwtDecode(token);
 };

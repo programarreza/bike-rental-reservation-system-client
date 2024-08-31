@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom";
+import { useAppSelector } from "../../../redux/hooks";
+import { selectCurrentUser } from "../../../redux/features/auth/authSlice";
 
 const NavbarLink = () => {
+  const currentUser = useAppSelector(selectCurrentUser);
+
+
   return (
     <div className="flex gap-8 text-base ">
       <NavLink
@@ -29,14 +34,18 @@ const NavbarLink = () => {
       >
         Contact Us
       </NavLink>
-      <NavLink
-        to="/login"
-        className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "text-[#f57c48] underline" : ""
-        }
-      >
-       Login
-      </NavLink>
+      {currentUser ? (
+        ""
+      ) : (
+        <NavLink
+          to="/login"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-[#f57c48] underline" : ""
+          }
+        >
+          Login
+        </NavLink>
+      )}
     </div>
   );
 };

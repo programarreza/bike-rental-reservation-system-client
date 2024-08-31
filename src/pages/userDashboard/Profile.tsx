@@ -14,7 +14,7 @@ const Profile = () => {
     <div className="flex flex-col pr-6 md:pr-0 md:flex-row text-white bg-[#001E2B] min-h-screen pt-16 xl:pt-0">
       {user ? (
         <>
-          <div className=" md:w-1/4 flex justify-center py-4 my-4 px-4 bg-[#162C46]">
+          <div className=" md:w-1/4 flex justify-center py-4 my-0 px-4 bg-[#162C46]">
             <div>
               <div className="avatar flex justify-center items-center">
                 <div className="w-24 rounded-full">
@@ -28,7 +28,7 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className="w-full md:m-4 bg-[#162C46] p-4 ">
+          <div className="w-full md:ml-4 bg-[#162C46] p-4 ">
             <div className="flex justify-between mb-6">
               <h3 className="text-center w-full">My Profile</h3>
 

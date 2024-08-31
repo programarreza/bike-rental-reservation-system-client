@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ImSpinner6 } from "react-icons/im";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { setUser } from "../../redux/features/auth/authSlice";
@@ -13,6 +13,7 @@ const Login = () => {
   const [isShow, setIsShow] = useState(true);
   const [login, { isLoading }] = useLoginMutation();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -29,13 +30,14 @@ const Login = () => {
 
       const res = await login(userData);
 
-      const user = verifyToken(res?.data?.token);
-
-      dispatch(setUser({ user: user, token: res?.data?.token }));
-      console.log(35, res?.data?.token)
-
       if (res?.data?.success) {
+        const user = verifyToken(res?.data?.token);
+        dispatch(setUser({ user: user, token: res?.data?.token }));
         toast.success(res?.data?.message);
+        navigate(`/${user.role}-dashboard`); 
+        
+      } else {
+        toast.error(res?.data?.message || "Login failed");
       }
     } catch (error) {
       console.log(error);

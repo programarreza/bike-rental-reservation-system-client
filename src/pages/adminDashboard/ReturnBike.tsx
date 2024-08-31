@@ -5,9 +5,10 @@ import {
 } from "../../redux/features/rent/rentApi";
 import { toast } from "sonner";
 import { TRent } from "../../types";
+import { ImSpinner6 } from "react-icons/im"; // Import the spinner icon
 
 const ReturnBike = () => {
-  const { data } = useGetReturnRentQuery(undefined);
+  const { data, isLoading } = useGetReturnRentQuery(undefined);
   const [addReturnBike] = useAddReturnBikeMutation();
 
   const returnData = data?.data;
@@ -21,16 +22,20 @@ const ReturnBike = () => {
   };
 
   return (
-    <div>
-      {!returnData || returnData.length === 0 ? (
+    <div className="text-white bg-[#162C46] min-h-screen">
+      {isLoading ? (
+        <div className="flex justify-center items-center min-h-screen">
+          <ImSpinner6 size={50} className="animate-spin m-auto" />
+        </div>
+      ) : !returnData || returnData.length === 0 ? (
         <h2 className="flex justify-center items-center h-screen text-2xl">
-          Not found Rent
+          No Rent Data Found
         </h2>
       ) : (
-        <div className="mx-4 mt-8">
+        <div className="mx-4 pt-8">
           <div className="overflow-x-auto">
             <table className="table">
-              <thead className="bg-[#FAFAFA]">
+              <thead className="bg-[#001E2B] text-white">
                 <tr className="uppercase font-bold">
                   <th>Bike image</th>
                   <th>Bike name</th>

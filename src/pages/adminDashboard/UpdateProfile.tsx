@@ -63,10 +63,10 @@ const UpdateProfile = ({ my_modal_8 }: { my_modal_8: string }) => {
   };
 
   return (
-    <div className="text-black">
+    <div className="text-black ">
       <input type="checkbox" id={my_modal_8} className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box relative p-12">
+      <div className="modal ">
+        <div className="modal-box relative p-12 bg-[#162C46] text-white">
           <label
             htmlFor={my_modal_8}
             className="absolute top-0 right-0 p-4 cursor-pointer"
@@ -75,12 +75,12 @@ const UpdateProfile = ({ my_modal_8 }: { my_modal_8: string }) => {
           </label>
 
           {!isFetching && user ? (
-            <div className="card card-compact">
+            <div className="card card-compact ">
               <h2 className=" text-center text-xl font-bold">
                 Update your profile
               </h2>
               {/* Form content */}
-              <div className="hero">
+              <div className="hero ">
                 <div className="hero-content flex flex-col md:flex-row rounded-xl justify-between">
                   {/* form area */}
                   <div className="card flex-shrink-0 shadow-2xl">
@@ -92,7 +92,7 @@ const UpdateProfile = ({ my_modal_8 }: { my_modal_8: string }) => {
                             defaultValue={user?.name}
                             {...register("name", { required: false })}
                             placeholder="Full Name"
-                            className="input input-bordered"
+                            className="input input-bordered bg-[#001E2B]"
                           />
                           {errors.name && (
                             <span className="text-[#D1A054]">
@@ -124,7 +124,7 @@ const UpdateProfile = ({ my_modal_8 }: { my_modal_8: string }) => {
                             defaultValue={user?.phone}
                             {...register("phone", { required: false })}
                             placeholder="Phone Number"
-                            className="input input-bordered"
+                            className="input input-bordered bg-[#001E2B]"
                           />
                           {errors.phone && (
                             <span className="text-[#D1A054]">
@@ -139,7 +139,7 @@ const UpdateProfile = ({ my_modal_8 }: { my_modal_8: string }) => {
                             defaultValue={user?.address}
                             {...register("address", { required: false })}
                             placeholder="Address"
-                            className="input input-bordered"
+                            className="input input-bordered bg-[#001E2B]"
                           />
                           {errors.address && (
                             <span className="text-[#D1A054]">

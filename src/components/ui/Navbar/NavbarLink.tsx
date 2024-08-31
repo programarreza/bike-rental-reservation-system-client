@@ -6,7 +6,7 @@ const NavbarLink = () => {
       <NavLink
         to="/"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "text-[#D1A054] underline" : ""
+          isPending ? "pending" : isActive ? "text-[#f57c48] underline" : ""
         }
       >
         Home
@@ -15,7 +15,7 @@ const NavbarLink = () => {
       <NavLink
         to="/about-us"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "text-[#D1A054] underline" : ""
+          isPending ? "pending" : isActive ? "text-[#f57c48] underline" : ""
         }
       >
         About Us
@@ -24,7 +24,7 @@ const NavbarLink = () => {
       <NavLink
         to="/contact-us"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "text-[#D1A054] underline" : ""
+          isPending ? "pending" : isActive ? "text-[#f57c48] underline" : ""
         }
       >
         Contact Us
@@ -32,7 +32,7 @@ const NavbarLink = () => {
       <NavLink
         to="/login"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "text-[#D1A054] underline" : ""
+          isPending ? "pending" : isActive ? "text-[#f57c48] underline" : ""
         }
       >
        Login

@@ -32,6 +32,7 @@ const Login = () => {
       const user = verifyToken(res?.data?.token);
 
       dispatch(setUser({ user: user, token: res?.data?.token }));
+      console.log(35, res?.data?.token)
 
       if (res?.data?.success) {
         toast.success(res?.data?.message);

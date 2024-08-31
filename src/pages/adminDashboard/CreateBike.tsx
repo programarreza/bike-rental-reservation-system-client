@@ -54,10 +54,10 @@ const CreateBike = ({ my_modal_6 }: { my_modal_6: string }) => {
   };
 
   return (
-    <div>
+    <div className="">
       <input type="checkbox" id={my_modal_6} className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box relative p-12">
+        <div className="modal-box relative p-12 bg-[#001E2B]">
           <label
             htmlFor={my_modal_6}
             className="absolute top-0 right-0 p-4 cursor-pointer"
@@ -65,13 +65,13 @@ const CreateBike = ({ my_modal_6 }: { my_modal_6: string }) => {
             <AiOutlineCloseCircle size={30} />
           </label>
 
-          <div className="card card-compact">
+          <div className="card card-compact bg-[#162C46]">
             {/* Form content */}
             <div className="hero">
               <div className="hero-content flex flex-col md:flex-row  rounded-xl justify-between">
                 {/* form area */}
                 <div className="card flex-shrink-0 shadow-2xl">
-                  <div className="card-body w-[300px] md:w-[390px]  rounded-md">
+                  <div className="card-body w-[300px] md:w-[370px]  rounded-md">
                     <form onSubmit={handleSubmit(onSubmit)} className="">
                       <div className="form-control">
                         <label className="label"></label>
@@ -79,7 +79,7 @@ const CreateBike = ({ my_modal_6 }: { my_modal_6: string }) => {
                           type="text"
                           {...register("name", { required: true })}
                           placeholder="Name"
-                          className="input input-bordered "
+                          className="input input-bordered bg-[#001E2B]"
                         />
                         {errors.name && (
                           <span className="text-[#006ce1]">
@@ -93,7 +93,7 @@ const CreateBike = ({ my_modal_6 }: { my_modal_6: string }) => {
                           type="text"
                           {...register("description", { required: true })}
                           placeholder="description"
-                          className="input input-bordered "
+                          className="input input-bordered bg-[#001E2B] "
                         />
                         {errors.description && (
                           <span className="text-[#006ce1]">
@@ -107,7 +107,7 @@ const CreateBike = ({ my_modal_6 }: { my_modal_6: string }) => {
                           type="number"
                           {...register("pricePerHour", { required: true })}
                           placeholder="pricePerHour"
-                          className="input input-bordered "
+                          className="input input-bordered bg-[#001E2B] "
                         />
                         {errors.pricePerHour && (
                           <span className="text-[#006ce1]">
@@ -121,7 +121,7 @@ const CreateBike = ({ my_modal_6 }: { my_modal_6: string }) => {
                           type="number"
                           {...register("cc", { required: true })}
                           placeholder="cc"
-                          className="input input-bordered "
+                          className="input input-bordered bg-[#001E2B] "
                         />
                         {errors.cc && (
                           <span className="text-[#006ce1]">
@@ -135,7 +135,7 @@ const CreateBike = ({ my_modal_6 }: { my_modal_6: string }) => {
                           type="number"
                           {...register("year", { required: true })}
                           placeholder="year"
-                          className="input input-bordered "
+                          className="input input-bordered bg-[#001E2B] "
                         />
                         {errors.year && (
                           <span className="text-[#006ce1]">
@@ -149,7 +149,7 @@ const CreateBike = ({ my_modal_6 }: { my_modal_6: string }) => {
                           type="text"
                           {...register("model", { required: true })}
                           placeholder="model"
-                          className="input input-bordered "
+                          className="input input-bordered bg-[#001E2B] "
                         />
                         {errors.model && (
                           <span className="text-[#006ce1]">
@@ -163,7 +163,7 @@ const CreateBike = ({ my_modal_6 }: { my_modal_6: string }) => {
                           type="text"
                           {...register("brand", { required: true })}
                           placeholder="brand"
-                          className="input input-bordered "
+                          className="input input-bordered bg-[#001E2B] "
                         />
                         {errors.brand && (
                           <span className="text-[#006ce1]">

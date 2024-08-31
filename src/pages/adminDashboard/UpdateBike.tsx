@@ -66,10 +66,10 @@ const UpdateBike = ({ my_modal_7, bikeId }: TUpdateBikeProps) => {
   };
 
   return (
-    <div>
+    <div >
       <input type="checkbox" id={my_modal_7} className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box relative p-12">
+        <div className="modal-box relative p-12 bg-[#001E2B]">
           <label
             htmlFor={my_modal_7}
             className="absolute top-0 right-0 p-4 cursor-pointer"
@@ -78,13 +78,13 @@ const UpdateBike = ({ my_modal_7, bikeId }: TUpdateBikeProps) => {
           </label>
 
           {!isFetching && bikeData ? (
-            <div className="card card-compact">
+            <div className="card card-compact bg-[#162C46]">
               {/* Form content */}
               <div className="hero">
                 <div className="hero-content flex flex-col md:flex-row rounded-xl justify-between">
                   {/* form area */}
                   <div className="card flex-shrink-0 shadow-2xl">
-                    <div className="card-body w-[300px] md:w-[390px] rounded-md">
+                    <div className="card-body w-[300px] md:w-[370px] rounded-md">
                       <form onSubmit={handleSubmit(onSubmit)} className="">
                         <div className="form-control">
                           <label className="label"></label>
@@ -93,7 +93,7 @@ const UpdateBike = ({ my_modal_7, bikeId }: TUpdateBikeProps) => {
                             defaultValue={bikeData?.name}
                             {...register("name", { required: true })}
                             placeholder="Name"
-                            className="input input-bordered"
+                            className="input input-bordered bg-[#001E2B]"
                           />
                           {errors.name && (
                             <span className="text-[#006ce1]">
@@ -108,7 +108,7 @@ const UpdateBike = ({ my_modal_7, bikeId }: TUpdateBikeProps) => {
                             defaultValue={bikeData?.description}
                             {...register("description", { required: true })}
                             placeholder="Description"
-                            className="input input-bordered"
+                            className="input input-bordered bg-[#001E2B]"
                           />
                           {errors.description && (
                             <span className="text-[#006ce1]">
@@ -123,7 +123,7 @@ const UpdateBike = ({ my_modal_7, bikeId }: TUpdateBikeProps) => {
                             type="number"
                             {...register("pricePerHour", { required: true })}
                             placeholder="Price per Hour"
-                            className="input input-bordered"
+                            className="input input-bordered bg-[#001E2B]"
                           />
                           {errors.pricePerHour && (
                             <span className="text-[#006ce1]">
@@ -138,7 +138,7 @@ const UpdateBike = ({ my_modal_7, bikeId }: TUpdateBikeProps) => {
                             defaultValue={bikeData?.cc}
                             {...register("cc", { required: true })}
                             placeholder="CC"
-                            className="input input-bordered"
+                            className="input input-bordered bg-[#001E2B]"
                           />
                           {errors.cc && (
                             <span className="text-[#006ce1]">
@@ -153,7 +153,7 @@ const UpdateBike = ({ my_modal_7, bikeId }: TUpdateBikeProps) => {
                             defaultValue={bikeData?.year}
                             {...register("year", { required: true })}
                             placeholder="Year"
-                            className="input input-bordered"
+                            className="input input-bordered bg-[#001E2B]"
                           />
                           {errors.year && (
                             <span className="text-[#006ce1]">
@@ -168,7 +168,7 @@ const UpdateBike = ({ my_modal_7, bikeId }: TUpdateBikeProps) => {
                             defaultValue={bikeData?.model}
                             {...register("model", { required: true })}
                             placeholder="Model"
-                            className="input input-bordered"
+                            className="input input-bordered bg-[#001E2B]"
                           />
                           {errors.model && (
                             <span className="text-[#006ce1]">
@@ -183,7 +183,7 @@ const UpdateBike = ({ my_modal_7, bikeId }: TUpdateBikeProps) => {
                             defaultValue={bikeData?.brand}
                             {...register("brand", { required: true })}
                             placeholder="Brand"
-                            className="input input-bordered"
+                            className="input input-bordered bg-[#001E2B]"
                           />
                           {errors.brand && (
                             <span className="text-[#006ce1]">

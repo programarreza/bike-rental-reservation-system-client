@@ -5,8 +5,9 @@ import {
 } from "../../redux/features/bikes/bikesApi";
 import CreateBike from "./CreateBike";
 import UpdateBike from "./UpdateBike";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { TBike } from "../../types";
+import { ImSpinner6 } from "react-icons/im"; // Import the spinner icon
 
 const BikeManagement = () => {
   const [brand, setBrand] = useState("");
@@ -17,8 +18,17 @@ const BikeManagement = () => {
   if (brand) queryArgs.push({ name: "brand", value: brand });
   if (model) queryArgs.push({ name: "model", value: model });
 
-  const { data } = useGetAllBikesQuery(queryArgs);
+  const { data, isLoading } = useGetAllBikesQuery(queryArgs);
   const bikeData = data?.data;
+
+    // Get unique brands and models dynamically
+    const uniqueBrands = useMemo(() => {
+      return [...new Set(bikeData?.map((bike) => bike.brand))];
+    }, [bikeData]);
+  
+    const uniqueModels = useMemo(() => {
+      return [...new Set(bikeData?.map((bike) => bike.model))];
+    }, [bikeData]);
 
   const handleDeleteBike = (id: string) => {
     Swal.fire({
@@ -34,7 +44,7 @@ const BikeManagement = () => {
         deleteBike(id);
         Swal.fire({
           title: "Deleted!",
-          text: "Your file has been deleted.",
+          text: "The bike has been deleted.",
           icon: "success",
         });
       }
@@ -42,46 +52,57 @@ const BikeManagement = () => {
   };
 
   return (
-    <div>
-      {!bikeData || bikeData?.length === 0 ? (
-        <h2 className="flex justify-center items-center h-screen text-2xl">
-          Not Available bikeData{" "}
-        </h2>
+    <div className="bg-[#162C46] min-h-screen text-white">
+      {isLoading ? (
+        <div className="flex justify-center items-center min-h-screen">
+          <ImSpinner6 size={50} className="animate-spin m-auto" />
+        </div>
+      ) : !bikeData || bikeData.length === 0 ? (
+        <div className="flex justify-center items-center min-h-screen">
+          <p className="text-xl font-bold">Bike not available</p>
+        </div>
       ) : (
-        <div className="mx-4 mt-8">
+        <div className="mx-4 pt-8">
           <div className="flex justify-between">
             {/* Filter area */}
-            {/* Filter by brand */}
-            <select
-              className="select select-bordered w-full max-w-xs mb-4"
+             {/* Filter by brand */}
+             <select
+              className="select select-bordered w-full max-w-xs mb-4 bg-[#001E2B]"
               value={brand}
               onChange={(e) => setBrand(e.target.value)}
             >
               <option value="" disabled selected>
                 Select Brand
               </option>
-              <option value="Yamaha">Yamaha</option>
-              <option value="hero">Hero</option>
+              {uniqueBrands.map((brandOption) => (
+                <option key={brandOption} value={brandOption}>
+                  {brandOption}
+                </option>
+              ))}
             </select>
 
             {/* Filter by model */}
             <select
-              className="select select-bordered w-full max-w-xs"
+              className="select select-bordered w-full max-w-xs bg-[#001E2B]"
               value={model}
               onChange={(e) => setModel(e.target.value)}
             >
               <option value="" disabled selected>
                 Select Model
               </option>
-              <option value="fzs v3">fzs v3</option>
-              <option value="hero x100">hero x100</option>
+              {uniqueModels.map((modelOption) => (
+                <option key={modelOption} value={modelOption}>
+                  {modelOption}
+                </option>
+              ))}
             </select>
+
 
             <div>
               {/* Modal Trigger Button */}
               <label
                 htmlFor="my_modal_6"
-                className="btn  bg-[#61adff] hover:bg-[#006ce1] text-white "
+                className="btn bg-[#61adff] hover:bg-[#006ce1] text-white"
               >
                 Add New Bike
               </label>
@@ -91,7 +112,7 @@ const BikeManagement = () => {
           <div className="overflow-x-auto">
             <table className="table">
               {/* head */}
-              <thead className="bg-[#FAFAFA]">
+              <thead className="bg-[#001E2B] text-white">
                 <tr className="uppercase font-bold">
                   <th>Image</th>
                   <th>name</th>

@@ -46,19 +46,35 @@ const router = createBrowserRouter([
       },
       {
         path: "bike-details/:id",
-        element: <BikeDetails />,
+        element: (
+          <ProtectedRoute role="undefined">
+            <BikeDetails />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "payment/success/:tranId",
-        element: <PaymentSuccessful />,
+        element: (
+          <ProtectedRoute role="undefined">
+            <PaymentSuccessful />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "payment/failed/:tranId",
-        element: <PaymentFailed />,
+        element: (
+          <ProtectedRoute role="undefined">
+            <PaymentFailed />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "payment/cancel/:tranId",
-        element: <PaymentCancel />,
+        element: (
+          <ProtectedRoute role="undefined">
+            <PaymentCancel />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

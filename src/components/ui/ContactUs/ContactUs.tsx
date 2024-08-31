@@ -55,7 +55,7 @@ const ContactUs = () => {
             <div className=" flex flex-col md:flex-row  rounded-xl justify-between">
               {/* form area */}
               <div className="  flex-shrink-0 shadow-sm">
-                <div className="card-body w-[400px] md:w-[800px] shadow-2xl rounded-xl md:p-12">
+                <div className="card-body w-[400px] md:w-[770px] lg:w-[800px] shadow-2xl rounded-xl md:p-12">
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid md:grid-cols-2 gap-8">
                       <div className="form-control ">

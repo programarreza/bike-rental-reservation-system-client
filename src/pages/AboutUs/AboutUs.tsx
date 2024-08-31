@@ -13,16 +13,16 @@ const AboutUs = () => {
           <div className="py-20">
             <h2 className="text-center text-5xl font-bold">About US</h2>
           </div>
-          <div className="flex justify-between gap-12">
+          <div className="flex flex-col lg:flex-row justify-between gap-4 xl:gap-12">
             {/* image  */}
             <div className="w-full shadow-xl rounded-md">
-              <img src={about} alt="about image" />
+              <img className="w-full h-full" src={about} alt="about image" />
             </div>
 
             {/* content */}
             <div className="w-full shadow-xl  space-y-6 p-4 rounded-md">
               <h3 className="font-medium uppercase text-xl">About Us</h3>
-              <h2 className="text-6xl font-bold">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold">
                 Million Ideas for Your Single Journey
               </h2>
               <p>

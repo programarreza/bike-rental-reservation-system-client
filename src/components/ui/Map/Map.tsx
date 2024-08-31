@@ -1,7 +1,7 @@
 const Map = () => {
   return (
 	<div>
-      <h2 className="text-5xl font-semibold flex items-center justify-center mb-20">
+      <h2 className="text-5xl font-semibold flex items-center justify-center my-20 ">
             Find Us Here
           </h2>
         <iframe

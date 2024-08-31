@@ -5,9 +5,8 @@ import { selectCurrentUser } from "../../../redux/features/auth/authSlice";
 const NavbarLink = () => {
   const currentUser = useAppSelector(selectCurrentUser);
 
-
   return (
-    <div className="flex gap-8 text-base ">
+    <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 text-base ">
       <NavLink
         to="/"
         className={({ isActive, isPending }) =>

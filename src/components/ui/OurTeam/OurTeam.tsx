@@ -11,7 +11,7 @@ const OurTeam = () => {
         className="px-4 md:px-6 lg:px-12 xl:px-24 min-h-screen "
         id="projects"
       >
-        <h2 className="pb-12 text-5xl font-bold text-center pt-12 md:py-24 ">
+        <h2 className="pb-12 text-3xl md:text-5xl font-bold text-center pt-12 md:py-24 ">
           Our Team Members
         </h2>
 

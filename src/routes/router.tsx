@@ -18,6 +18,8 @@ import Profile from "../pages/userDashboard/Profile";
 import ReturnBike from "../pages/adminDashboard/ReturnBike";
 import PaymentCancel from "../pages/PaymentCancel/PaymentCancel";
 import ProtectedRoute from "./ProtectedRoute";
+import TermsOfService from "../pages/TermsOfService/TermsOfService";
+import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
       {
         path: "contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "terms-service",
+        element: <TermsOfService />,
+      },
+      {
+        path: "private-policy",
+        element: <PrivacyPolicy />,
       },
       {
         path: "bike-details/:id",
